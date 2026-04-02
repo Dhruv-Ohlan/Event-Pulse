@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event Pulse - Academic Co-Pilot</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-dim": "#005a52",
+              "primary": "#4a40e0",
+              "on-secondary-fixed-variant": "#00675e",
+              "on-error": "#ffefef",
+              "secondary-fixed-dim": "#7ae7d8",
+              "primary-container": "#9795ff",
+              "surface-container-high": "#dfe3e6",
+              "on-surface": "#2c2f31",
+              "on-error-container": "#510017",
+              "secondary-fixed": "#89f5e7",
+              "error-dim": "#a70138",
+              "surface-bright": "#f5f7f9",
+              "on-tertiary-fixed-variant": "#6d104e",
+              "surface-container-low": "#eef1f3",
+              "outline-variant": "#abadaf",
+              "tertiary-dim": "#892a65",
+              "error": "#b41340",
+              "surface": "#f5f7f9",
+              "on-primary-fixed-variant": "#1a0099",
+              "tertiary-container": "#fd8bca",
+              "primary-fixed-dim": "#8885ff",
+              "on-surface-variant": "#595c5e",
+              "on-background": "#2c2f31",
+              "on-tertiary-container": "#610244",
+              "surface-dim": "#d0d5d8",
+              "surface-variant": "#d9dde0",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#f74b6d",
+              "inverse-on-surface": "#9a9d9f",
+              "surface-tint": "#4a40e0",
+              "tertiary-fixed-dim": "#ee7ebc",
+              "secondary-container": "#89f5e7",
+              "inverse-surface": "#0b0f10",
+              "on-primary-fixed": "#000000",
+              "background": "#f5f7f9",
+              "on-primary-container": "#14007e",
+              "tertiary": "#983772",
+              "tertiary-fixed": "#fd8bca",
+              "on-tertiary-fixed": "#360024",
+              "primary-fixed": "#9795ff",
+              "secondary": "#00675e",
+              "outline": "#747779",
+              "on-secondary-container": "#005c54",
+              "surface-container": "#e5e9eb",
+              "on-primary": "#f4f1ff",
+              "inverse-primary": "#8582ff",
+              "on-secondary": "#bffff5",
+              "primary-dim": "#3d30d4",
+              "on-secondary-fixed": "#004841",
+              "surface-container-highest": "#d9dde0",
+              "on-tertiary": "#ffeff4"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-[#f5f7f9]/80 dark:bg-[#0f172a]/80 backdrop-blur-xl docked full-width top-0 sticky z-50 flex justify-between items-center px-6 py-3 w-full font-['Manrope'] antialiased tracking-tight">
+<div class="flex items-center gap-8">
+<div class="text-xl font-bold tracking-tight text-[#2c2f31] dark:text-[#f1f5f9]">Event Pulse</div>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-[#4F46E5] dark:text-[#9795ff] font-semibold text-sm" href="#">Product</a>
+<a class="text-[#64748b] dark:text-[#94a3b8] hover:bg-[#eef1f3] dark:hover:bg-[#1e293b] transition-all duration-200 px-3 py-1.5 rounded-lg text-sm" href="#">Solutions</a>
+<a class="text-[#64748b] dark:text-[#94a3b8] hover:bg-[#eef1f3] dark:hover:bg-[#1e293b] transition-all duration-200 px-3 py-1.5 rounded-lg text-sm" href="#">Resources</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#64748b] dark:text-[#94a3b8] font-medium text-sm px-4 py-2 hover:bg-[#eef1f3] transition-all duration-200 rounded-lg">Login</button>
+<button class="bg-primary text-on-primary font-semibold text-sm px-5 py-2.5 rounded-xl shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">Sign Up</button>
+</div>
+</header>
+<main class="relative">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-6 pt-20 pb-32 flex flex-col md:flex-row gap-16 items-center">
+<div class="flex-1 space-y-8">
+<!-- Status Badge -->
+<div class="inline-flex items-center gap-2 bg-surface-container-low px-4 py-1.5 rounded-full border border-outline-variant/15">
+<span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#983772]"></span>
+<span class="text-[0.7rem] font-bold uppercase tracking-widest font-label text-on-surface-variant">Now in Beta for College Societies</span>
+</div>
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold text-on-surface leading-[1.1] tracking-tight">
+                    Go from event idea to campaign plan in <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">seconds.</span>
+</h1>
+<p class="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed">
+                    AI-powered PR and campaign planning built for college societies, councils, and fest teams. Let your Academic Co-Pilot handle the logistics while you focus on the vision.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold text-lg px-8 py-4 rounded-xl shadow-[0_12px_40px_rgba(74,64,224,0.06)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
+                        Create Campaign
+                    </button>
+<button class="text-primary font-bold text-lg px-8 py-4 rounded-xl border border-outline-variant/15 hover:bg-surface-container-low transition-all duration-200 flex items-center gap-2">
+<span class="material-symbols-outlined">play_circle</span>
+                        See Demo
+                    </button>
+</div>
+<div class="pt-8 flex items-center gap-4">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="close up headshot of smiling student in library setting with soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMQVe05o4If8FhAuyUWVltIZvc03LZKmLvrtYNURKzNdVFoffYrWD4mjVc3vO6GgbcKmuC9s3FckceKaG6yLVygm0dppkvYAVGg69iYb5NyEWd2puhENcTTHpA9HGVeIAbLpHdNH1TleFk3pEQoJspcterQnVBlStvPjp6dr4Ah574eJahc-BTLA7H-7XT2EH6MigF3pEIbFEjDf44vPk4E-hUHZSU_b8Wjjf8PfFnV2VbIvNCjuLkWSMf16DPCfEc_jV3V3STTr0"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="vibrant headshot of young woman in colorful academic environment with bright lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASnvyu96iJW-SNhXh0exo7cca8tfD8aqbOkuO0z2PO2kloQuwg6lFaGJdFQ3DbHTa980WMVMbwuk2DokuyhVD7rRELtiD_024WFHLAa119uL71dexy1ywy8BRVxUE9WfYQgFMFb834sD7R9TTdv-PDl0WigkRFZzaayvmK8fT35Gkw3-WnBWotcbTL37_p_8rSC0AHMfaOYBSQXQuL8YVulNYc8QPJG3JRJaruR5GLyuS1ClNiEJUiF5l4cQxtbaOe_lfYf9HSx-4"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="portrait of diverse university student on campus with sun flare and natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3kVLikwO_4R9JaFnx5eCJ9CwmB-yUDOba1SpLsKHI9273e50c-I3WgByO1dgcDGpj5ppHC-cutaIw5F51R3tfZLQHtHxLcYH1nmvSVt0cB_N5t2KvSyrWiy8MGhXvg4oqWmvmaIClOJfXGrZeJ4bgGJrLPFetH1-uhGKptG4WcJ7EX9NlgH0W2OZ97e6X0W3KRFJHeNEmPytcC06cAw8oUxUegJ8s6m0QlrcCvQXOr6e8Y3FmybCLvwFA8ZbdOzfwHfLqclwTg3Q"/>
+</div>
+<p class="text-sm text-on-surface-variant font-medium">Trusted by <span class="text-primary font-bold">500+</span> society leads</p>
+</div>
+</div>
+<!-- Dashboard Preview / Bento Grid Layout -->
+<div class="flex-1 relative w-full">
+<!-- Background Glow -->
+<div class="absolute -top-20 -right-20 w-80 h-80 bg-primary/10 rounded-full blur-[80px]"></div>
+<div class="grid grid-cols-12 gap-4 relative">
+<!-- Main Dashboard Card -->
+<div class="col-span-12 bg-surface-container-lowest rounded-xl shadow-[0_24px_48px_rgba(74,64,224,0.08)] overflow-hidden border border-outline-variant/10">
+<div class="p-4 bg-surface-container-low flex items-center justify-between">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-error/20"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary-container/20"></div>
+<div class="w-3 h-3 rounded-full bg-secondary-container/20"></div>
+</div>
+<div class="text-[0.7rem] font-bold text-on-surface-variant tracking-widest font-label uppercase">Campaign Preview</div>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div class="flex-1">
+<div class="h-4 bg-surface-container-low rounded-full w-3/4 mb-2"></div>
+<div class="h-3 bg-surface-container-low rounded-full w-full mb-2"></div>
+<div class="h-3 bg-surface-container-low rounded-full w-5/6"></div>
+</div>
+</div>
+<!-- Pulse Chip Example -->
+<div class="inline-flex items-center gap-2 bg-tertiary/10 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[1rem] text-tertiary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-[0.7rem] font-bold text-tertiary uppercase tracking-wider font-label">Trending Insight: High Engagement Found</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="h-20 bg-surface-container-low rounded-lg p-3">
+<div class="h-2 bg-outline-variant/30 rounded-full w-1/2 mb-3"></div>
+<div class="h-4 bg-primary/20 rounded-full w-3/4"></div>
+</div>
+<div class="h-20 bg-surface-container-low rounded-lg p-3">
+<div class="h-2 bg-outline-variant/30 rounded-full w-1/2 mb-3"></div>
+<div class="h-4 bg-secondary/20 rounded-full w-3/4"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Glass Widget 1 -->
+<div class="col-span-6 bg-surface/40 glass-panel absolute -bottom-10 -left-6 p-5 rounded-xl border border-white/20 shadow-xl flex items-center gap-4 z-10">
+<div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-primary">campaign</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">PR Draft Ready</p>
+<p class="text-sm font-semibold">"TechFest 2024 Launch"</p>
+</div>
+</div>
+<!-- Floating Glass Widget 2 -->
+<div class="col-span-6 bg-surface/40 glass-panel absolute -top-8 -right-4 p-5 rounded-xl border border-white/20 shadow-xl flex items-center gap-4 z-10">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">query_stats</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Engagement</p>
+<p class="text-sm font-semibold">+24% projected</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Bento Grid Section -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+<div class="text-center mb-16 space-y-4">
+<h2 class="font-headline text-4xl font-bold tracking-tight">Built for Student Leaders</h2>
+<p class="text-on-surface-variant text-lg">Tools that understand the chaos of society life.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="md:col-span-2 bg-surface-container-low rounded-xl p-8 flex flex-col justify-between group overflow-hidden relative min-h-[400px]">
+<div class="relative z-10 max-w-sm">
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined">edit_note</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mb-3">Instant Content Editor</h3>
+<p class="text-on-surface-variant leading-relaxed">Draft social posts, emails, and press releases specifically tailored for campus audiences. One prompt, ten platforms.</p>
+</div>
+<div class="absolute -right-10 -bottom-10 w-2/3 h-2/3 bg-surface-container-lowest rounded-xl shadow-2xl rotate-3 translate-y-10 group-hover:translate-y-4 transition-transform duration-500 p-6">
+<div class="space-y-4">
+<div class="h-3 bg-surface-container-low rounded-full w-full"></div>
+<div class="h-3 bg-surface-container-low rounded-full w-5/6"></div>
+<div class="h-3 bg-surface-container-low rounded-full w-4/6"></div>
+<div class="h-3 bg-primary/10 rounded-full w-3/4"></div>
+</div>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="bg-gradient-to-br from-primary to-primary-container rounded-xl p-8 text-on-primary flex flex-col justify-between group">
+<div>
+<div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-white mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_graph</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mb-3">Timeline Sync</h3>
+<p class="text-on-primary/80 leading-relaxed">Smart scheduling that knows when students are most active online—and when they're in lectures.</p>
+</div>
+<div class="pt-8 flex items-end justify-between">
+<span class="text-5xl font-extrabold opacity-20">98%</span>
+<span class="text-sm font-medium px-3 py-1 bg-white/20 rounded-full">Automated</span>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface-container-low rounded-xl p-8 flex flex-col justify-between group h-full">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container/30 flex items-center justify-center text-secondary mb-6">
+<span class="material-symbols-outlined">diversity_3</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mb-3">Society Collab</h3>
+<p class="text-on-surface-variant leading-relaxed">Shared workspaces for your entire core team. No more messy WhatsApp threads.</p>
+</div>
+<div class="mt-8 flex justify-center">
+<div class="relative w-full h-12 bg-surface-container-lowest rounded-full border border-outline-variant/10 flex items-center px-4 gap-2">
+<div class="w-6 h-6 rounded-full bg-primary/20"></div>
+<div class="flex-1 h-2 bg-surface-container-low rounded-full"></div>
+<span class="material-symbols-outlined text-xs text-outline">done_all</span>
+</div>
+</div>
+</div>
+<!-- Feature 4 -->
+<div class="md:col-span-2 bg-surface-container-high rounded-xl p-8 flex items-center gap-12 group overflow-hidden">
+<div class="flex-1">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/30 flex items-center justify-center text-tertiary mb-6">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mb-3">Real-time Analytics</h3>
+<p class="text-on-surface-variant leading-relaxed">See how your campaign performs across student groups. Pivot with data, not guesses.</p>
+</div>
+<div class="hidden md:block flex-1">
+<img class="rounded-lg shadow-lg rotate-2 group-hover:rotate-0 transition-transform duration-500" data-alt="clean UI screenshot of colorful data visualizations and bar charts on a white dashboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXy-cHKKqP1fqVSTdQzLY-CO-IBpRykQx3XMx8nOKGY6gE-puWX85mqUQWDg0pIxMNYRuK5eRLpZTTW9vUPh9jT6SPxTrzU64UcZahCag_Nzfqf70lU-O4uuaaE_b107vWL1cvR9xoZ_st1xGG_lamODivl4VwiGvsi_QxBjcQRctUrHGyS2KIevE4SjIixKUnlK21TYsDDRVkpfbJlCgR8r3cw_Cumw3eKKaaCnfAMRYNC1_WhOkCW9p6d2eEyl1BwABoRY9anH4"/>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-5xl mx-auto px-6 py-32">
+<div class="bg-inverse-surface rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden">
+<!-- Abstract Grain Pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/p6.png')]"></div>
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/20 rounded-full blur-[60px]"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-tertiary/20 rounded-full blur-[60px]"></div>
+<div class="relative z-10 space-y-8">
+<h2 class="font-headline text-4xl md:text-5xl font-bold text-white tracking-tight">Ready to launch your best event?</h2>
+<p class="text-on-surface-variant text-lg max-w-2xl mx-auto opacity-80">Join hundreds of societies using Event Pulse to streamline their PR workflow.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+<button class="bg-white text-on-surface font-bold text-lg px-10 py-5 rounded-2xl hover:bg-surface-bright transition-all duration-200">
+                            Create Campaign Free
+                        </button>
+<button class="text-white font-bold text-lg px-10 py-5 rounded-2xl border border-white/20 hover:bg-white/10 transition-all duration-200">
+                            Contact Support
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="max-w-7xl mx-auto px-6 py-12 border-t border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="space-y-4">
+<div class="text-2xl font-bold tracking-tight text-on-surface">Event Pulse</div>
+<p class="text-on-surface-variant text-sm max-w-xs">Empowering the next generation of campus organizers with intelligent planning tools.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+<div class="space-y-4">
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Product</p>
+<ul class="space-y-2 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Campaign Editor</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Analytics</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Team Spaces</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Society</p>
+<ul class="space-y-2 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Beta Access</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Support</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Legal</p>
+<ul class="space-y-2 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-20 pt-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-outline">
+<p>© 2024 Event Pulse. Built for the academic ecosystem.</p>
+<div class="flex gap-6">
+<a class="hover:text-on-surface" href="#">Twitter</a>
+<a class="hover:text-on-surface" href="#">Instagram</a>
+<a class="hover:text-on-surface" href="#">LinkedIn</a>
+</div>
+</div>
+</footer>
+</body></html>
