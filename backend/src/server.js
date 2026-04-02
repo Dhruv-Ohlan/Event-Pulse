@@ -4,7 +4,7 @@ import { app } from './app.js';
 
 // Load environment variables
 dotenv.config({
-    path: './.env' // Adjust path if .env is in a different directory relative to execution
+    path: './.env'
 });
 
 const PORT = process.env.PORT || 8000;
