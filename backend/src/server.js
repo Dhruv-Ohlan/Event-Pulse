@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
 import { app } from './app.js';
+import connectDB from './config/db.js';
 
 // Load environment variables
 dotenv.config({
@@ -8,17 +8,6 @@ dotenv.config({
 });
 
 const PORT = process.env.PORT || 8000;
-
-// Connect to MongoDB
-const connectDB = async () => {
-    try {
-        const connectionInstance = await mongoose.connect(process.env.MONGODB_URI);
-        console.log(`\nMongoDB connected !! DB HOST: ${connectionInstance.connection.host}`);
-    } catch (error) {
-        console.error("MongoDB connection FAILED: ", error);
-        process.exit(1);
-    }
-};
 
 connectDB()
     .then(() => {

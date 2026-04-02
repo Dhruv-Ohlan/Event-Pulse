@@ -1,6 +1,10 @@
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Sidebar() {
+  const { currentCampaign } = useSelector((state) => state.campaign);
+  const campaignId = currentCampaign?._id || '';
+
   const navLinkClass = ({ isActive }) =>
     isActive
       ? "bg-white text-primary rounded-xl shadow-sm px-4 py-3 mx-2 flex items-center gap-3 translate-x-1 duration-200"
@@ -26,15 +30,15 @@ export default function Sidebar() {
           <span className="material-symbols-outlined">add_circle</span>
           <span className="font-['Inter'] font-medium text-sm">Create Campaign</span>
         </NavLink>
-        <NavLink to="/editor" className={navLinkClass}>
+        <NavLink to={campaignId ? `/editor/${campaignId}` : '/editor'} className={navLinkClass}>
           <span className="material-symbols-outlined">edit_note</span>
           <span className="font-['Inter'] font-medium text-sm">Content Editor</span>
         </NavLink>
-        <NavLink to="/timeline" className={navLinkClass}>
+        <NavLink to={campaignId ? `/timeline/${campaignId}` : '/timeline'} className={navLinkClass}>
           <span className="material-symbols-outlined">auto_graph</span>
           <span className="font-['Inter'] font-medium text-sm">Timeline</span>
         </NavLink>
-        <NavLink to="/export-summary" className={navLinkClass}>
+        <NavLink to={campaignId ? `/export-summary/${campaignId}` : '/export-summary'} className={navLinkClass}>
           <span className="material-symbols-outlined">pie_chart</span>
           <span className="font-['Inter'] font-medium text-sm">Export/Summary</span>
         </NavLink>

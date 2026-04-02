@@ -17,11 +17,11 @@ function App() {
         {/* Protected Dashboard Routes wrapped in a Layout */}
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<MainDashboard />} />
-          <Route path="/timeline" element={<CampaignTimeline />} />
-          <Route path="/editor" element={<ContentEditor />} />
+          <Route path="/timeline/:id?" element={<CampaignTimeline />} />
+          <Route path="/editor/:id?" element={<ContentEditor />} />
           <Route path="/pulse" element={<CampusPulse />} />
           <Route path="/create-campaign" element={<CreateCampaignForm />} />
-          <Route path="/export-summary" element={<ExportSummary />} />
+          <Route path="/export-summary/:id?" element={<ExportSummary />} />
         </Route>
       </Routes>
     </Router>

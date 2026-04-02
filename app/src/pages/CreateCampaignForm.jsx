@@ -1,9 +1,14 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateCurrentCampaign } from '../store/campaignSlice';
+import { createNewCampaign, clearError } from '../store/campaignSlice';
+import { useEffect } from 'react';
 
 export default function CreateCampaignForm() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.campaign);
+
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
     defaultValues: {
       eventName: '',
@@ -24,14 +29,29 @@ export default function CreateCampaignForm() {
     }
   });
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const currentTone = watch('tone');
 
-  const onSubmit = (data) => {
-    dispatch(updateCurrentCampaign(data));
-    navigate('/export-summary');
+  const onSubmit = async (data) => {
+    // Transform channels object to array of active strings
+    const selectedChannels = Object.keys(data.channels).filter(key => data.channels[key]);
+
+    // Map extraNotes to brief for the backend
+    const campaignData = {
+      ...data,
+      channels: selectedChannels,
+      brief: data.extraNotes
+    };
+    const resultAction = await dispatch(createNewCampaign(campaignData));
+    if (createNewCampaign.fulfilled.match(resultAction)) {
+      navigate(`/export-summary/${resultAction.payload._id}`);
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearError());
+    };
+  }, [dispatch]);
 
   return (
     <div className="p-10 max-w-6xl mx-auto">
@@ -41,6 +61,14 @@ export default function CreateCampaignForm() {
         <h2 className="text-4xl font-extrabold tracking-tight text-on-surface">Design Your Impact</h2>
         <p className="text-on-surface-variant text-lg max-w-2xl">Tell our Academic Co-Pilot about your event, and we'll engineer a multi-channel strategy that resonates with your campus audience.</p>
       </div>
+
+      {error && (
+        <div className="mb-6 p-4 bg-error/10 text-error rounded-xl flex items-center gap-3">
+          <span className="material-symbols-outlined">error</span>
+          <p className="text-sm font-semibold">{error}</p>
+        </div>
+      )}
+
       <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/*  Main Form Area  */}
         <div className="lg:col-span-8 space-y-8">
@@ -177,9 +205,15 @@ export default function CreateCampaignForm() {
               <div className="relative z-10">
                 <h4 className="text-2xl font-bold mb-4 leading-tight">Ready to launch?</h4>
                 <p className="text-on-primary/80 text-sm mb-8">Our AI will generate a tailored schedule, copy variants for every channel, and visual recommendations.</p>
-                <button type="submit" className="w-full bg-white text-primary py-4 rounded-2xl font-extrabold tracking-tight hover:shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                  Generate Campaign Plan
-                  <span className="material-symbols-outlined">rocket_launch</span>
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full bg-white text-primary py-4 rounded-2xl font-extrabold tracking-tight hover:shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                >
+                  {loading ? 'Consulting AI...' : 'Generate Campaign Plan'}
+                  <span className={`material-symbols-outlined ${loading ? 'animate-spin' : ''}`}>
+                    {loading ? 'sync' : 'rocket_launch'}
+                  </span>
                 </button>
                 <div className="mt-8 pt-8 border-t border-white/20 flex flex-col gap-4">
                   <div className="flex items-center gap-3">
@@ -207,17 +241,10 @@ export default function CreateCampaignForm() {
                 <b>Trending:</b> Technical events scheduled for Wednesdays see 15% higher registration rates this semester.
               </p>
             </div>
-            {/*  Visual Preview Card  */}
-            <div className="rounded-2xl overflow-hidden relative group">
-              <img alt="Large auditorium with professional event lighting" className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern university lecture hall with vibrant neon lighting and a professional tech event atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGouMkEdejH9sseoovf5AWYDCU2t38--EDOVEjw0OLJZVb4E2nPhBwmSqooUR3Ov7tncQoVRGpNoHtxxFnSEzU2pAK1T3aAPVCKTe5_a9FxoE97MJtgrUCdnJabQ035hX6AIBKlmD7gsRDArF_dUboZLUZ9QMjzUG30nu_6hHQT4-nyy9Zek2V8uE0U_7fH3ZDP5zkT6yJsic5Jk1azA_RgfMUYTJWkC7Vm08LfDegwj_JsPExy8rRyyvWLMIDBlnmtfyNbQYUeCs" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
-                <p className="text-white text-xs font-bold uppercase tracking-widest opacity-80">Campaign Mood</p>
-                <h5 className="text-white font-bold">Vibrant &amp; Scholarly</h5>
-              </div>
-            </div>
           </div>
         </div>
       </form>
     </div>
   );
 }
+
