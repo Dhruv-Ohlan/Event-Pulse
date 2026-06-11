@@ -23,6 +23,7 @@ build/
 *.swo
 .DS_Store
 
+# UI Templates
 campaign_timeline/
 campus_pulse/
 content_editor/
@@ -30,3 +31,5 @@ create_campaign_form/
 export_summary/
 landing_login_page/
 main_dashboard/
+
+
