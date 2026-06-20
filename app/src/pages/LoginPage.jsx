@@ -14,7 +14,15 @@ export default function LoginPage() {
 
   const onSubmit = async (data) => {
     try {
-      await authService.login({ email: data.email, password: data.password });
+      const res = await authService.login({ email: data.email, password: data.password });
+      const token = res?.data?.data?.token;
+      const user = res?.data?.data?.user;
+      if (token) {
+        window.localStorage.setItem('eventPulseToken', token);
+      }
+      if (user) {
+        window.localStorage.setItem('eventPulseUser', JSON.stringify(user));
+      }
       navigate('/dashboard');
     } catch (err) {
       setError('root', { message: err?.response?.data?.message || 'Network error' });

@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
        // Target all requests starting with /api to the backend port
       '/api': {
-        target: 'https://event-pulse-api-nwyz.onrender.com',
+        target: 'http://localhost:8000',
         changeOrigin: true, // Needed for virtual hosted sites
         // rewrite: (path) => path.replace(/^\/api/, '') // Optional: If you don't want /api on the backend
       }

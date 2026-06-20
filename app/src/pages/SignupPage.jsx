@@ -14,7 +14,8 @@ export default function SignupPage() {
 
   const onSubmit = async (data) => {
     try {
-      await authService.register({ username: data.username, email: data.email, password: data.password });
+      const res = await authService.register({ username: data.username, email: data.email, password: data.password });
+      // Optionally auto-login: store message and navigate to login
       navigate('/login');
     } catch (err) {
       setError('root', { message: err?.response?.data?.message || 'Network error' });

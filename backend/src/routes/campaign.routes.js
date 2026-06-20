@@ -5,20 +5,21 @@ import {
     getCampaignById, 
     generateBlueprint 
 } from "../controllers/campaign.controller.js";
+import { protect, authorize } from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
 // @route   POST /api/campaigns
-router.post("/", createCampaign);
+router.post("/", protect, createCampaign);
 
 // @route   GET /api/campaigns
-router.get("/", getAllCampaigns);
+router.get("/", protect, getAllCampaigns);
 
 // @route   GET /api/campaigns/:id
-router.get("/:id", getCampaignById);
+router.get("/:id", protect, getCampaignById);
 
 // @route   POST /api/campaigns/:id/generate
-router.post("/:id/generate", generateBlueprint);
+router.post("/:id/generate", protect, authorize('admin'), generateBlueprint);
 
 export default router;
 
