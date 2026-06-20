@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
+  const isLoggedIn = typeof window !== 'undefined' && !!window.localStorage.getItem('eventPulseToken');
   return (
     <div className="bg-surface font-body text-on-surface antialiased overflow-x-hidden min-h-screen">
       {/* Top Navigation Bar */}
@@ -14,8 +15,8 @@ export default function LandingPage() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <button className="text-[#64748b] dark:text-[#94a3b8] font-medium text-sm px-4 py-2 hover:bg-[#eef1f3] transition-all duration-200 rounded-lg">Login</button>
-          <Link to="/dashboard" className="bg-primary text-on-primary font-semibold text-sm px-5 py-2.5 rounded-xl shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
+        <a href="/login" className="text-[#64748b] dark:text-[#94a3b8] font-medium text-sm px-4 py-2 hover:bg-[#eef1f3] transition-all duration-200 rounded-lg">Login</a>
+        <Link to="/signup" className="bg-primary text-on-primary font-semibold text-sm px-5 py-2.5 rounded-xl shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
             Sign Up
           </Link>
         </div>
@@ -36,7 +37,7 @@ export default function LandingPage() {
               AI-powered PR and campaign planning built for college societies, councils, and fest teams. Let your Academic Co-Pilot handle the logistics while you focus on the vision.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <Link to="/create-campaign" className="bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold text-lg px-8 py-4 rounded-xl shadow-[0_12px_40px_rgba(74,64,224,0.06)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 inline-block">
+              <Link to={isLoggedIn ? "/create-campaign" : "/login"} className="bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold text-lg px-8 py-4 rounded-xl shadow-[0_12px_40px_rgba(74,64,224,0.06)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 inline-block">
                 Create Campaign
               </Link>
               <button className="text-primary font-bold text-lg px-8 py-4 rounded-xl border border-outline-variant/15 hover:bg-surface-container-low transition-all duration-200 flex items-center gap-2">
@@ -198,9 +199,9 @@ export default function LandingPage() {
               <h2 className="font-headline text-4xl md:text-5xl font-bold text-white tracking-tight">Ready to launch your best event?</h2>
               <p className="text-on-surface-variant text-lg max-w-2xl mx-auto opacity-80">Join hundreds of societies using Event Pulse to streamline their PR workflow.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <button className="bg-white text-on-surface font-bold text-lg px-10 py-5 rounded-2xl hover:bg-surface-bright transition-all duration-200">
+                <Link to={isLoggedIn ? "/create-campaign" : "/login"} className="bg-white text-on-surface font-bold text-lg px-10 py-5 rounded-2xl hover:bg-surface-bright transition-all duration-200 inline-block text-center">
                   Create Campaign Free
-                </button>
+                                </Link>
                 <button className="text-white font-bold text-lg px-10 py-5 rounded-2xl border border-white/20 hover:bg-white/10 transition-all duration-200">
                   Contact Support
                 </button>

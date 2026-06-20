@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 import MainDashboard from './pages/MainDashboard';
 import CampaignTimeline from './pages/CampaignTimeline';
 import ContentEditor from './pages/ContentEditor';
@@ -13,6 +15,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         
         {/* Protected Dashboard Routes wrapped in a Layout */}
         <Route element={<DashboardLayout />}>

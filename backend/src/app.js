@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { errorMiddleware, notFoundHandler } from './middlewares/error.middleware.js';
 import campaignRouter from './routes/campaign.routes.js';
+import authRouter from './routes/auth.routes.js';
 
 // Create Express app
 const app = express();
@@ -26,6 +27,7 @@ app.get('/api/v1/healthcheck', (req, res) => {
 });
 
 // Register routes
+app.use('/api/auth', authRouter);
 app.use('/api/campaigns', campaignRouter);
 
 // Undefined routes handler (404)
