@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { authService } from '../services/api';
@@ -11,6 +12,12 @@ const highlights = [
 export default function SignupPage() {
   const navigate = useNavigate();
   const { register, handleSubmit, watch, formState: { errors }, setError } = useForm();
+
+  useEffect(() => {
+    if (window.localStorage.getItem('eventPulseToken')) {
+      navigate('/dashboard');
+    }
+  }, [navigate]);
 
   const onSubmit = async (data) => {
     try {

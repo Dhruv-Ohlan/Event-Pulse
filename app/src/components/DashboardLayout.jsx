@@ -1,8 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import TopHeader from './TopHeader';
 
 export default function DashboardLayout() {
+  const token = window.localStorage.getItem('eventPulseToken');
+
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+
   return (
     <div className="bg-surface font-body text-on-surface antialiased min-h-screen flex">
       <Sidebar />
